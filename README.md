@@ -1,2 +1,4 @@
 # node-app-template
-Example Node app demonstrates pipelines, github, use of Express and Uthentication
+Example Node app demonstrates pipelines, github, use of Express and Authentication with Social
+
+
