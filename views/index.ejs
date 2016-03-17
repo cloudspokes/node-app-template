@@ -1,0 +1,151 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>NOde Template app</title>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+  <link href="stylesheets/select2.min.css" media="all" rel="stylesheet" type="text/css" />
+  
+  <style>
+    .navbar-brand { margin-top: 2px; max-width: 90%; padding: 0; }
+
+    .element.style {
+      width: 715px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+    <!--
+          <a class="navbar-brand" href="#"><img class="img-responsive logo" src="img/ShoutAbout-01-01.png"></a>
+     -->   
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+          <div class="navbar-form navbar-right">
+
+			       <% if (locals.user) { %>
+				        <p class="navbar-text">
+					       Hello <%= locals.user.displayName %>
+				        </p>
+
+			          <% if (locals.user.identities[0].provider === 'salesforce') { %>
+			             <p>Post a message to Chatter</p>
+			             <form action="/chatter" method="post">
+				              <textarea name="message"></textarea>
+				              <input type="submit" value="send" />
+			             </form>
+			          <% } %>
+
+			       <% } else { %>
+				        <button class="btn btn-success" onclick="window.Auth0.signIn({onestep: true})">Sign in</button>
+			       <% } %>
+
+          </div>
+
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <!--
+        <a href="#lang-en" onclick="window.lang.change('en'); return false;">English</a> | <a href="#lang-en" onclick="window.lang.change('se'); return false;">Spanish</a> | <a href="#lang-en" onclick="window.lang.change('jp'); return false;">Japanese</a>
+        -->
+        <h2></h2>
+
+
+        <!-- Contact Info section -->
+        <form class="form-horizontal" role="form" method="post" action="/user">
+        <div>
+            
+            <div class="form-group">
+              <label for="pname" lang="en">Given Name</label>
+              <input type="text" id="firstname" name="firstname" class="form-control" value="" /> 
+            </div>
+
+            <div class="form-group">
+              <label for="pname" lang="en">Family Name</label>
+              <input type="text" id="lastname" name="lastname" class="form-control" value="" /> 
+            </div>
+            
+            <div class="form-group">
+              <label for="pname" lang="en">Email</label>
+              <input type="text" id="email" name="email" class="form-control" value="" /> 
+            </div>
+
+            <div class="form-group" lang="en">
+              <label for="pname">Phone</label>
+              <input type="text" id="phone" name="phone" class="form-control" value="" /> 
+            </div>
+
+        </div>  
+        <!-- END User Identity section -->
+
+        <p>
+            <input id="submit" name="submit" type="submit" value="Save &raquo;" class="btn btn-primary btn-lg">
+        </p>
+        </form>
+
+        <p class="js-event-log"></p>
+
+      </div>
+    </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Appirio 2016</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
+	<script id="auth0" src="https://sdk.auth0.com/auth0.js#client=<%= env["AUTH0_CLIENT_ID"] %>&redirect_uri=<%= env["AUTH0_CALLBACK_URL"] %>">
+	</script>
+
+    <!-- Select 2 script -->
+  <script src="js/select2/select2.min.js"></script>
+  <!-- Langauge switcher pack -->
+  <script src="js/jquery-lang.js" charset="utf-8" type="text/javascript"></script>
+
+  <script type="text/javascript">
+    // Create language switcher instance
+    var lang = new Lang();
+
+    lang.dynamic('se', 'js/langpack/se.json');
+
+    lang.init({
+      defaultLang: 'en'
+    });
+  
+  </script>
+
+</body>
+</html>

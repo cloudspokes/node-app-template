@@ -1,0 +1,16 @@
+{
+	"token": {
+		"Provide feedback for":"Retroalimentar",
+		"OR":"O",
+		"Please Select a Hospital":"Por favor elija un hospital",
+		"Given Name":"Nombre de pila",
+		"Family Name":"Apellido",
+		"Email":"Email",
+		"Phone":"Teléfono"
+	},
+	"regex": [
+		["Budget", ""],
+		["^Something at start of text", ""],
+		["This will be case insensitive", "i", ""]
+	]
+}

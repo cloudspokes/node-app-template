@@ -1,0 +1,16 @@
+{
+	"token": {
+		"Provide feedback for":"調査",
+		"OR":"或るいは",
+		"Please Select a Hospital":"病院を選択してください",
+		"Given Name":"名",
+		"Family Name":"苗字",
+		"Email":"電子メイル",
+		"Phone":"電話"
+	},
+	"regex": [
+		["Budget", ""],
+		["^Something at start of text", ""],
+		["This will be case insensitive", "i", ""]
+	]
+}

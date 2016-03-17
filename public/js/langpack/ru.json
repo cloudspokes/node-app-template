@@ -1,0 +1,14 @@
+{
+	"token": {
+		"Please Select a Hospital":"Пожалуйста, выберите госпиталь",
+		"Given Name":"имя",
+		"Family Name":"Фамилия",
+		"Email":"е-мейл",
+		"Phone":"Телефон"
+	},
+	"regex": [
+		["Budget", ""],
+		["^Something at start of text", ""],
+		["This will be case insensitive", "i", ""]
+	]
+}

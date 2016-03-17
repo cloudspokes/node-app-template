@@ -1,0 +1,28 @@
+{
+  "name": "heroku-node",
+  "version": "0.0.0",
+  "description": "ERROR: No README.md file found!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "",
+  "license": "BSD",
+  "dependencies": {
+    "ejs": "~0.8.4",
+    "express": "^3.3.8",
+    "request": "^2.27.0",
+    "passport": "0.3.2",
+    "passport-auth0": "0.5.1",
+    "pg": "^4.4.3",
+    "underscore": "^1.8.3",
+    "async": "^1.4.2",
+    "winston": "^1.1.0",
+    "config": "^1.16.0"
+  },
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.2.x"
+  }
+}
