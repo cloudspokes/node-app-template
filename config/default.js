@@ -22,9 +22,7 @@ module.exports = {
      */
     PORT: process.env.PORT || 5000,
 
-    // URL:
-    // https://shout-about-public-developer-edition.na30.force.com/servlet/servlet.FileDownload?file=01536000000FKHo
-
+    REST_ENDPOINT: process.env.REST_ENDPOINT || "https://developer-week-developer-edition.na16.force.com/services/apexrest",
     /**
      * Postresql database connection string.
      */

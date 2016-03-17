@@ -25,7 +25,7 @@ var express  = require('express');
 var passport = require('passport');
 var Salesforce = require('./lib/salesforce');
 var async    = require('async');
-
+var rp = require('request-promise');
 var pg = require ('pg');
 
 var Account = require('./src/database').accounts;
@@ -80,7 +80,7 @@ app.get('/', function (req, res) {
 
 });
 
-
+// POST Chatter iF uSER authenticated to SFDC
 app.post('/chatter', function (req, res) {
   if (!req.user || req.user.identities[0].provider !== 'salesforce') {
     return res.redirect('/');
@@ -104,8 +104,8 @@ app.post('/chatter', function (req, res) {
 
 
 /// PROMIS - Call APEX REST using Promis example
-/*
-app.post('/conact', function (req, res) {
+
+app.post('/contact', function (req, res) {
 
   var ip = req.headers['x-forwarded-for'] || 
      req.connection.remoteAddress || 
@@ -114,11 +114,13 @@ app.post('/conact', function (req, res) {
 
      console.log(' User IP: '+ip);
 
-      console.log('FN:'+req.body.firstName+' LN:'+req.body.lastName+' EMAIL:'+req.body.email);
+     console.log('FN:'+req.body.firstName+' LN:'+req.body.lastName+' EMAIL:'+req.body.email);
 
+  //'https://developer-week-developer-edition.na16.force.com/services/apexrest/consumer'
+  var rest_uri =  config.REST_ENDPOINT + '/consumer';
   var options = {
     method: 'POST',
-    uri: 'https://dev1-vantage-metrics.cs2.force.com/services/apexrest/consumer',
+    uri: rest_uri,
     body: {
         firstName: req.body.firstname,
         lastName: req.body.lastname,
@@ -133,7 +135,7 @@ app.post('/conact', function (req, res) {
     .then(function (parsedBody) {
         // POST succeeded... 
         console.log('Contact Succcess: '+parsedBody);
-
+        res.send('Contact Succcess: '+parsedBody);
     })
     .catch(function (err) {
         // POST failed... 
@@ -142,7 +144,7 @@ app.post('/conact', function (req, res) {
     }); 
 
 });
-*/
+
 var port = process.env.PORT || 5000;
 
 http.createServer(app).listen(port, function () {
